@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pin — Paste a screenshot</title>
+<style>
+  :root { color-scheme: light dark; --accent: #7C5CFF; --bg: #fff; --fg: #14161c; --muted: #6b7280; --line: #d8dae0; --sunk: #f6f7f9; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #16181d; --fg: #eceef2; --muted: #9aa1ad; --line: #363a45; --sunk: #1c1f25; } }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; display: grid; place-items: center; background: var(--bg); color: var(--fg);
+         font: 14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif; }
+  main { width: min(560px, 90vw); text-align: center; }
+  h1 { font-size: 19px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+  .drop { border: 2px dashed var(--line); border-radius: 14px; padding: 46px 24px; background: var(--sunk);
+          transition: border-color .12s, background .12s; }
+  .drop.over { border-color: var(--accent); background: rgba(124,92,255,.07); }
+  kbd { font-family: ui-monospace, monospace; font-size: 12px; background: var(--bg);
+        border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px; }
+  .big { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .or { color: var(--muted); font-size: 12.5px; margin: 14px 0 0; }
+  button { font: inherit; font-weight: 500; padding: 8px 15px; border-radius: 8px; margin-top: 12px;
+           background: transparent; color: var(--muted); border: 1px solid var(--line); cursor: pointer; }
+  button:hover { color: var(--accent); border-color: var(--accent); }
+  input[type=file] { display: none; }
+  .err { margin-top: 16px; font-size: 13px; color: #b4232a; min-height: 20px; }
+  @media (prefers-color-scheme: dark) { .err { color: #ff8087; } }
+  .tip { margin-top: 26px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Paste a screenshot</h1>
+  <div class="sub">For anything Pin can’t capture itself — native dropdowns, other apps, your design tool.</div>
+
+  <div class="drop" id="drop">
+    <div class="big">Press <kbd>⌘</kbd><kbd>V</kbd> to paste an image</div>
+    <div>or drop one here</div>
+    <p class="or">Nothing on the clipboard?</p>
+    <button id="pick" type="button">Choose a file</button>
+    <input type="file" id="file" accept="image/*">
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <div class="tip">
+    On a Mac, <kbd>⌘</kbd><kbd>⌃</kbd><kbd>⇧</kbd><kbd>4</kbd> copies a region straight to the clipboard.<br>
+    Once the image is in, crop it and write the report exactly as usual.
+  </div>
+</main>
+<script src="overlay.js"></script>
+<script type="module" src="paste.js"></script>
+</body>
+</html>

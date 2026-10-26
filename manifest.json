@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Pin — visual bug reports to GitHub and Linear",
+  "version": "0.9.2",
+  "description": "Crop any part of a page, mark it up, add a comment, and file it as a GitHub or Linear issue with your device info attached.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://uploads.github.com/*",
+    "https://github.com/*",
+    "https://api.linear.app/*",
+    "https://uploads.linear.app/*",
+    "https://*.storage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Report a bug — drag to select an area",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "src/options.html",
+  "commands": {
+    "capture": {
+      "suggested_key": {
+        "default": "Alt+Shift+B"
+      },
+      "description": "Start a bug report capture"
+    },
+    "paste": {
+      "suggested_key": {
+        "default": "Alt+Shift+V"
+      },
+      "description": "Open Pin to paste a screenshot"
+    }
+  }
+}
